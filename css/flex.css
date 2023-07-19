@@ -1,0 +1,47 @@
+.flex-class {
+  display: flex;
+  /* flex-direction: column-reverse; */
+  flex-direction: row;
+  justify-content: start;
+  /* justify-content: space-around; */
+  /* justify-content: space-between; 
+  */
+  /* justify-content: end; */
+  /* align-items: start; */
+  align-items: center;
+  /* align-items: end; */
+  flex-wrap: wrap;
+  height: 50vh;
+  width: 100%;
+}
+.flex-class1 {
+  display: grid;
+  /* grid-template-columns: 100px 100px 100px 100px; */
+  /* grid-template-columns: repeat(4, 100px); */
+  grid-row: 1;
+  grid-gap: 10px;
+
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+}
+#yellow {
+  background-color: yellow;
+  width: 100px;
+  height: 100px;
+}
+#blue {
+  background-color: blue;
+  width: 100px;
+  height: 100px;
+}
+#red {
+  background-color: red;
+  width: 100px;
+  height: 100px;
+}
+#pink {
+  background-color: pink;
+  width: 100px;
+  height: 100px;
+}

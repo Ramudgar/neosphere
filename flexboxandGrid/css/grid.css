@@ -1,0 +1,100 @@
+/* .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.child {
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.red {
+    background-color: #ff5f5f;
+    color: #fff;
+}
+
+.green {
+    background-color: #78ff78;
+    color: #333;
+}
+
+.blue {
+    background-color: #5f7fff;
+    color: #fff;
+}
+
+.yellow {
+    background-color: #ffee5f;
+    color: #333;
+}
+
+.purple {
+    background-color: #af5fff;
+    color: #fff;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+  */
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto 1fr auto;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 600px;
+  /* this property is used to center the grid */
+  /* margin: 0 auto;  */
+
+  /* this property is used to align the grid to the right */
+  /* margin-left: auto;   */
+
+  /* this property is used to align the grid in the left */
+  margin-right: auto;
+}
+
+.child {
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.top-child {
+    /* This property specifies that the element should span from the first column (1) to the last column (-1) in the grid */
+  grid-column: 1 / -1;
+  background-color: #ff5f5f;
+  color: #fff;
+}
+
+.left-child {
+    /* This property specifies that the element should span from the first column (1) to the second column (2) in the grid. This means it will occupy the first column only. */
+  grid-column: 1 / 2;
+  background-color: #78ff78;
+  color: #333;
+}
+
+.right-child {
+  grid-column: 2 / 3;
+  background-color: #5f7fff;
+  color: #fff;
+}
+
+.bottom-child {
+  grid-column: 1 / -1;
+  background-color: #ffee5f;
+  color: #333;
+}
