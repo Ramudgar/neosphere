@@ -1,67 +1,89 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+#div-1,
+#div-4,
+#div-7,
+#div-10,
+#div-13 {
+  background-color: #ff5c35;
+}
+
+#div-2 {
+  position: static;
+  background-color: #0068b1;
+}
+
+#div-3,
+#div-6,
+#div-9,
+#div-12,
+#div-15 {
+  background-color: #4fb06d;
+}
+
+#div-1,
+#div-2,
+#div-3,
+#div-4,
+#div-5,
+#div-6,
+#div-7,
+#div-8,
+#div-9,
+#div-10,
+#div-11,
+#div-12,
+#div-13,
+#div-14,
+#div-15 {
+  width: 75px;
+  height: 75px;
+  margin: 10px;
+  border-radius: 10px;
   text-align: center;
+  line-height: 75px;
+  color: white;
+  font-size: 24px;
 }
 
-h1 {
-  margin-bottom: 20px;
-}
-
-.container {
-  background-color: #f5f5f5;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.child {
-  width: 120px;
-  height: 150px;
-  border-radius: 5px;
-  display: inline-block;
-  margin-right: 20px;
-  font-weight: bold;
-  color: #fff;
-}
-
-#child1 {
-  background-color: #ff5f5f;
-  /* Static: Default positioning */
-  /* The element is positioned according to the normal flow of the document */
-}
-
-#child2 {
-  background-color: #78ff78;
+#div-5 {
   position: relative;
-  left: 20px;
-  /* Relative: Relative to its normal position */
-  /* The element is positioned relative to its normal position using the left property */
+  top: 30px;
+  left: 30px;
+  background-color: #0068b1;
 }
 
-#child3 {
-  background-color: #5f7fff;
-  position: absolute;
-  top: 0;
-  right: 20px;
-  /* Absolute: Relative to its closest positioned ancestor */
-  /* The element is positioned relative to its closest positioned ancestor using the top and right properties */
-}
-
-#child4 {
-  background-color: #ffee5f;
+#div-8 {
   position: fixed;
-  top: 0;
-  right: calc(50% + 80px);
-  /* Fixed: Relative to the viewport */
-  /* The element is positioned relative to the viewport using the top and right properties */
+  top: 700px;
+  left: 300px;
+  background-color: #0068b1;
 }
 
-#child5 {
-  background-color: #ff78ff;
+#div-11 {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  background-color: #0068b1;
+}
+
+#container {
+  background-color: #b6c7d6;
+  width: 200px;
+  height: 150px;
+  position: relative;
+}
+
+#div-14 {
+  position: -webkit-sticky;
   position: sticky;
-  top: 0;
-  right: calc(50% + 240px);
-  /* Sticky: Based on scroll position */
-  /* The element is positioned based on the user's scroll position using the top and right properties */
+
+  top: 10px;
+  background-color: #0068b1;
+}
+
+.generic {
+  background-color: lightgray;
+}
+
+.sticky-container {
+  height: 1500px;
 }

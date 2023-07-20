@@ -51,6 +51,7 @@ p {
 .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: 1fr 1fr; */ /* line no 53 and 54 are same*/
   grid-template-rows: auto 1fr auto;
   grid-gap: 20px;
   padding: 20px;

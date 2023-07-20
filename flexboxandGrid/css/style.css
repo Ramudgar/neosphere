@@ -3,10 +3,11 @@
   flex-wrap: wrap;
   justify-content: space-around; /* this property work only if the flex 1 property of below is not present*/
   align-items: center;
-  height: 300px;
+  height: 500px;
 }
 .child {
-  flex: 1; /* property ensures each child element grows and shrinks equally within the container. */
+   /* property ensures each child element grows and shrinks equally within the container. */
+   /* flex: 1; */
   padding: 20px;
   color: #fff;
   text-align: center;

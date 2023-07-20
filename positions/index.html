@@ -9,30 +9,83 @@
 </head>
 
 <body>
-    <h1>Positioning Example</h1>
-  
-    <div class="container">
-      <div class="child" id="child1">
-        <h2>Static</h2>
-        <p>This is the content of the static element.</p>
-      </div>
-      <div class="child" id="child2">
-        <h2>Relative</h2>
-        <p>This is the content of the relative element.</p>
-      </div>
-      <div class="child" id="child3">
-        <h2>Absolute</h2>
-        <p>This is the content of the absolute element.</p>
-      </div>
-      <div class="child" id="child4">
-        <h2>Fixed</h2>
-        <p>This is the content of the fixed element.</p>
-      </div>
-      <div class="child" id="child5">
-        <h2>Sticky</h2>
-        <p>This is the content of the sticky element.</p>
-      </div>
+  <h1>Positioning Example</h1>
+
+  <div>
+    <h2>Static</h2>
+    <h3>
+      "Static is the default position for HTML elements. Elements with position: static are positioned based on the
+      normal flow of the page, as you would expect them to be without any CSS styling. They are not affected by the top,
+      right, bottom, or left properties. Z-index also does not apply to static elements."
+    </h3>
+    <div id="div-1">1</div>
+    <div id="div-2">2</div>
+    <div id="div-3">3</div>
+  </div>
+  <div>
+    <h2>Relative</h2>
+    <h3>
+      "When assigned position: relative, an element follows the render flow of the page, but will be shifted relative to
+      its initial position.To determine the amount of offset, you set values for the top, right, bottom, and/or left
+      properties. Surrounding elements won’t be affected, but there will be space where the repositioned element would
+      have been (in static positioning)."
+      <div id="div-4">1</div>
+      <div id="div-5">2</div>
+      <div id="div-6">3</div>
+  </div>
+  <div>
+    <h2>Fixed</h2>
+    <h3>
+      "Elements with position: fixed do not adhere to the normal render flow of the document. Instead, fixed elements
+      are positioned relative to the viewport — in other words, the part of the document that is currently visible in
+      the browser.Fixed elements do not move when the user scrolls, and, unlike relative, they do not leave a blank
+      space where the element would have been positioned. You can use the top, right, bottom, and left properties to set
+      the fixed element's final position."
+
+    </h3>
+    <div id="div-7">7</div>
+    <div id="div-8">8</div>
+    <div id="div-9"></div>
+  </div>
+
+  <div>
+    <h2>Absolute</h2>
+    <h3>
+      "With position: absolute, an element ignores the normal document flow. However, instead of being positioned
+      relative to the viewport (like with position: fixed), it’s positioned relative to the nearest positioned ancestor
+      (a positioned ancestor is any element with a position value besides static, the default)."
+
+    </h3>
+    <div id="div-10">1</div>
+    <div id=container>
+      <div id="div-11">2</div>
     </div>
-  </body>
+    <div id="div-12">3</div>
+  </div>
+
+  <div class="sticky-container">
+    <h2>Sticky</h2>
+    <h3>
+      "Elements with position: sticky are positioned depending on the user’s scroll. Depending on how far the user has
+      scrolled down the page, a sticky element behaves like a relative element until the viewport meets a specified
+      position. Then it becomes fixed in a spot and appears to “stick” to the page as the user scrolls.In this example,
+      scroll down and watch as div 2 goes from behaving like a relative element to a fixed element when it reaches the
+      position top: 0 and “sticks” to the top of the viewport."
+    </h3>
+    <div id="div-13">1</div>
+    <div id="div-14">2</div>
+    <div id="div-15">3</div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+    <div class="generic"></div>
+  </div>
+
+
+
+</body>
 
 </html>
