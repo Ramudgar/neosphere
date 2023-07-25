@@ -1,0 +1,110 @@
+// var a = 5;
+// console.log(a);
+// a = 7;
+// console.log(a);
+// var a = 6;
+// console.log(a);
+
+// const b = 5;
+
+// console.log(b);
+
+// let c = 5;
+// console.log(c);
+// c = 7;
+// console.log(c);
+
+// let add = null;
+// console.log(add);
+// console.log(typeof add);
+// add = 5;
+// console.log(add);
+
+// let f = 5;
+// console.log(f);
+// const g = 6;
+// console.log((f -= 5));
+
+// let h = "55";
+
+// console.log(
+//     h=="55"
+// )
+// console.log(
+//     h==="55"
+// )
+
+// hoisting in js
+// a=5
+// console.log(a);
+// var a;
+// console.log(a);
+
+// if else statement
+
+// const add = "8";
+
+// const sub = 8;
+// if (add == 5) {
+//   console.log("add is equal to 5");
+// } else if (sub == 6) {
+//   console.log("sub equal to 6");
+// } else {
+//   console.log("required input is not given");
+// }
+
+// switch case statement
+let number = prompt("enter a number");
+switch (number) {
+  case 5:
+    alert("add is equal to 5");
+    // console.log("add is equal to 5");
+    break;
+  case 6:
+    alert("add is equal to 6");
+    console.log("add is equal to 6");
+    break;
+  default:
+    alert("required input is not given");
+    console.log("required input is not given");
+    break;
+}
+
+// let number = window.prompt("Enter a number");
+// switch (Number(number)) {
+//   case 5:
+//     console.log("The number is equal to 5");
+//     alert("The number is equal to 5");
+//     break;
+//   case 6:
+//     console.log("The number is equal to 6");
+//     alert("The number is equal to 6");
+//     break;
+//   default:
+//     console.log("Required input is not given");
+//     alert("Required input is not given");
+//     break;
+// }
+
+// const readline = require("readline");
+
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
+
+// rl.question("Enter a number: ", function (number) {
+//   switch (Number(number)) {
+//     case 5:
+//       console.log("The number is equal to 5");
+//       break;
+//     case 6:
+//       console.log("The number is equal to 6");
+//       break;
+//     default:
+//       console.log("Required input is not given");
+//       break;
+//   }
+
+//   rl.close();
+// });
