@@ -54,21 +54,21 @@
 // }
 
 // switch case statement
-let number = prompt("enter a number");
-switch (number) {
-  case 5:
-    alert("add is equal to 5");
-    // console.log("add is equal to 5");
-    break;
-  case 6:
-    alert("add is equal to 6");
-    console.log("add is equal to 6");
-    break;
-  default:
-    alert("required input is not given");
-    console.log("required input is not given");
-    break;
-}
+// let number = prompt("enter a number");
+// switch (number) {
+//   case 5:
+//     alert("add is equal to 5");
+//     // console.log("add is equal to 5");
+//     break;
+//   case 6:
+//     alert("add is equal to 6");
+//     console.log("add is equal to 6");
+//     break;
+//   default:
+//     alert("required input is not given");
+//     console.log("required input is not given");
+//     break;
+// }
 
 // let number = window.prompt("Enter a number");
 // switch (Number(number)) {
@@ -108,3 +108,40 @@ switch (number) {
 
 //   rl.close();
 // });
+
+// const purchaseAmount = 1000;
+// switch (true) {
+//   case purchaseAmount < 100:
+//     console.log(purchaseAmount * 0.05);
+//   default:
+//     console.log(purchaseAmount * 0.1);
+// }
+
+// calculate bmi using if else statement
+// const weight = prompt("Enter your weight in kg");
+// const heightInFeet = prompt("Enter your height in Feet");
+// const height = heightInFeet * 0.3048;
+
+// const bmi = weight / (height * height);
+// if (bmi < 18.5) {
+//   console.log("Your BMI is " + bmi + ", so you are underweight.");
+//   alert("Your BMI is " + bmi + ", so you are underweight.");
+// } else if (bmi >= 18.5 && bmi <= 24.9) {
+//   console.log("Your BMI is " + bmi + ", so you have a normal weight.");
+//   alert( `Your BMI is ${bmi}, so you have a normal weight.`);
+// } else if (bmi >= 25 && bmi <= 29.9) {
+//   console.log("Your BMI is " + bmi + ", so you are overweight.");
+//   alert("Your BMI is " + bmi + ", so you are overweight.");
+// } else {
+//   console.log("Your BMI is " + bmi + ", so you are obese.");
+//   alert("Your BMI is " + bmi + ", so you are obese.");
+// }
+
+let a = [1, 2, 6, 4, 5, 6, 7, 8, 9, 10];
+for (let i = 0; i < a.length; i++) {
+  if (a[i] % 2 == 0) {
+    console.log(a[i]);
+  } else {
+    console.log("odd number");
+  }
+}
