@@ -167,8 +167,6 @@ const resultPerson=person.map((item)=>item.name);
 console.log(resultPerson);
 
 
-
-
  
 
 
