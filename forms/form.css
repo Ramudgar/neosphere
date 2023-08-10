@@ -1,0 +1,62 @@
+.container{
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+
+    
+}
+form {
+
+    width: 500px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: burlywood;
+
+    
+  }
+  
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+  }
+
+  .input-with-icon {
+    position: relative;
+}
+
+.input-icon , .input-icon1 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    color: gray;
+}
+
+  
+  #button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4f4caf;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+ 
+ 
+
+   
+  
+  
+  
