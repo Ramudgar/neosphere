@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Download file</title>
+  </head>
+  <body>
+    <h1>Save Contacts to File</h1>
+    <button id="downloadButton">Download Contacts</button>
+
+    <script>
+      // Sample data
+      const contacts = [
+        { name: "John Doe", address: "123 Main St, CityA" },
+        { name: "Jane Smith", address: "456 Elm St, CityB" },
+      ];
+
+      // Conve
+      const jsonData = JSON.stringify(contacts, null, 2); //null is replacer function, that is used to filter out the data, 2rt data to JSON format is indentation
+
+      //             const jsonData = JSON.stringify(contacts, (key, value) => {
+      //     // Here, you can modify or filter values as needed
+      //     if (key === "address") {
+      //         // For example, you might want to omit the address property
+      //         return undefined; // This will omit the property from the JSON output
+      //     }
+      //     return value; // Return the original value for other properties
+      // }, 2);
+
+      // Create a function to save data to a file
+      function saveToFile(filename, data) {
+        const blob = new Blob([data], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      // Call the function to initiate download
+      document
+        .getElementById("downloadButton")
+        .addEventListener("click", function () {
+          saveToFile("contacts.json", jsonData);
+        });
+
+      // Sample text data
+    //   const textData =
+    //     "Hello, this is a sample text that you can save as a text file.";
+
+    //   // Create a function to save data to a text file
+    //   function saveToFile(filename, data) {
+    //     const blob = new Blob([data], { type: "text/plain" });
+    //     const url = URL.createObjectURL(blob);
+
+    //     const a = document.createElement("a");
+    //     a.href = url;
+    //     a.download = filename;
+    //     document.body.appendChild(a);
+    //     a.click();
+
+    //     // Clean up
+    //     document.body.removeChild(a);
+    //     URL.revokeObjectURL(url);
+    //   }
+
+    //   // Call the function to initiate download
+    //   document
+    //     .getElementById("downloadButton")
+    //     .addEventListener("click", function () {
+    //       saveToFile("sample.txt", textData);
+    //     });
+    </script>
+  </body>
+</html>
