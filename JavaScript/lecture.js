@@ -124,7 +124,7 @@
 
 // const bmi = weight / (height * height);
 // if (bmi < 18.5) {
-//   console.log("Your BMI is " + bmi + ", so you are underweight.");
+//   console.log(`Your BMI is ${bmi}, so you are underweight.`);
 //   alert("Your BMI is " + bmi + ", so you are underweight.");
 // } else if (bmi >= 18.5 && bmi <= 24.9) {
 //   console.log("Your BMI is " + bmi + ", so you have a normal weight.");
@@ -137,11 +137,15 @@
 //   alert("Your BMI is " + bmi + ", so you are obese.");
 // }
 
-let a = [1, 2, 6, 4, 5, 6, 7, 8, 9, 10];
-for (let i = 0; i < a.length; i++) {
-  if (a[i] % 2 == 0) {
-    console.log(a[i]);
-  } else {
-    console.log("odd number");
-  }
+// let a = [1, 2, 6, 4, 5, 6, 7, 8, 9, 10];
+// for (let i = 0; i < a.length; i++) {
+//   if (a[i] % 2 == 0) {
+//     console.log(a[i]);
+//   } else {
+//     console.log("odd number");
+//   }
+// }
+
+for(let i=0; i>5;i+=2){
+    console.log(i);
 }
