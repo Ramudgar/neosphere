@@ -25,6 +25,9 @@ const userSchema = new schema(
       enum: ["user", "admin"],
       default: "user",
     },
+    age: {
+      type: Number,
+    },
     contactNumber: {
       type: String,
     },
