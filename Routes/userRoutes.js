@@ -19,7 +19,8 @@ router.post("/users/savedata", (req, res) => {
     contactNumber: data.contactNumber,
   });
 
-  user.save()
+  user
+    .save()
     .then((data) => {
       res.json({ msg: "Data inserted", success: true, data });
     })
@@ -39,6 +40,16 @@ router.get("/users/getdata", (req, res) => {
     });
 });
 
+// api to get all users using async and await
+router.get("/user/getdata", async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json({ msg: "data fetched successfully", success: true, users });
+  } catch (err) {
+    res.status(500).json({ msg: err.message, success: false });
+  }
+});
+
 // api to get user data by id
 router.get("/users/getdata/:id", (req, res) => {
   User.findById(req.params.id)
@@ -49,6 +60,17 @@ router.get("/users/getdata/:id", (req, res) => {
     .catch((error) => {
       res.status(500).json({ msg: error, success: false });
     });
+});
+
+
+// async await api to get user data by id
+router.get("/users/getdata/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json({ msg: "data fetched successfully", success: true, user });
+  } catch (err) {
+    res.status(500).json({ msg: err.message, success: false });
+  }
 });
 
 // api to update user data by user id also use async await
