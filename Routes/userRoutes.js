@@ -77,6 +77,7 @@ router.get("/users/getdata/:id", async (req, res) => {
 router.put("/users/update/:id", async (req, res) => {
   const data = req.body;
   const user = await User.findById(req.params.id);
+  console.log(user);
   if (!data) {
     res.status(400).json({ msg: "Data not found" });
     return;

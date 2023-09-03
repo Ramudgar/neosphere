@@ -4,7 +4,6 @@ const userSchema = new schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
       min: 3,
       max: 20,
