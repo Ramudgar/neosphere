@@ -51,11 +51,11 @@ p {
 .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* grid-template-columns: 1fr 1fr; */ /* line no 53 and 54 are same*/
-  grid-template-rows: auto 1fr auto;
+  /* grid-template-columns: 1fr 1fr 1fr;   */
+  /* grid-template-rows: auto 1fr auto; */
   grid-gap: 20px;
   padding: 20px;
-  width: 600px;
+  width: 700px;
   /* this property is used to center the grid */
   /* margin: 0 auto;  */
 
@@ -71,7 +71,7 @@ p {
   border-radius: 5px;
   padding: 20px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .top-child {
@@ -89,7 +89,7 @@ p {
 }
 
 .right-child {
-  grid-column: 2 / 3;
+  grid-column: 2/ 3;
   background-color: #5f7fff;
   color: #fff;
 }
