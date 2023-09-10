@@ -39,36 +39,89 @@ router.post("/users/register", (req, res) => {
   }
 });
 
+// router.post("/users/register", async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const userExist = await User.findOne({ email });
+//     if (userExist) {
+//       res.status(400).json({ msg: "email already exists", success: false });
+//       return;
+//     }
+//     const hashed_pw = await bcryptjs.hash(password, 10);
+//     const newUser =new User({
+//       email,
+//       password: hashed_pw,
+//     });
+
+//     await newUser.save();
+//     res.json({
+//       msg: "user registered successfully",
+//       success: true,
+//       data: newUser,
+//     });
+//   } catch (e) {
+//     res.status(500).json({ msg: e, success: false });
+//   }
+// });
+
 // router for login
-router.post("/user/login", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+// router.post("/user/login", (req, res) => {
+//   const email = req.body.email;
+//   const password = req.body.password;
 
+//   try {
+//     User.findOne({ email: email }).then((user_data) => {
+//       if (user_data == null) {
+//         res.status(400).json({ msg: "User does not exist", success: false });
+//         return;
+//       }
+//       bcryptjs.compare(password, user_data.password, (e, result) => {
+//         if (result) {
+//           const token = jwt.sign({ _id: user_data._id }, "neosphere", {
+//             expiresIn: "30d",
+//           });
+
+//           res.json({
+//             msg: "Login successful",
+//             success: true,
+//             token: token,
+//             data: user_data,
+//           });
+//         } else {
+//           res
+//             .status(400)
+//             .json({ msg: "Password does not match", success: false });
+//         }
+//       });
+//     });
+//   } catch (e) {
+//     res.status(500).json({ msg: e, success: false });
+//   }
+// });
+
+router.post("/user/login", async (req, res) => {
+  const { email, password } = req.body;
   try {
-    User.findOne({ email: email }).then((user_data) => {
-      if (user_data == null) {
-        res.status(400).json({ msg: "User does not exist", success: false });
-        return;
-      }
-      bcryptjs.compare(password, user_data.password, (e, result) => {
-        if (result) {
-          const token = jwt.sign({ _id: user_data._id }, "techlearn", {
-            expiresIn: "30d",
-          });
+    const user = await User.findOne({ email });
+    if (!user) {
+      res
+        .status(400)
+        .json({ msg: "email or password is not correct", success: false });
+      return;
+    }
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      res
+        .status(400)
+        .json({ msg: "email or password is not correct", success: false });
+      return;
+    }
 
-          res.json({
-            msg: "Login successful",
-            success: true,
-            token: token,
-            data: user_data,
-          });
-        } else {
-          res
-            .status(400)
-            .json({ msg: "Password does not match", success: false });
-        }
-      });
+    const token = jwt.sign({ _id: user._id }, "neosphere", {
+      expiresIn: "30d",
     });
+
+    res.json({ msg: "login successful", success: true, token, data: user });
   } catch (e) {
     res.status(500).json({ msg: e, success: false });
   }

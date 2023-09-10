@@ -62,7 +62,6 @@ router.get("/users/getdata/:id", (req, res) => {
     });
 });
 
-
 // async await api to get user data by id
 router.get("/users/getdata/:id", async (req, res) => {
   try {
@@ -187,6 +186,15 @@ router.delete("/users/deletedata/:id", (req, res) => {
     .catch((error) => {
       res.status(500).json({ msg: error, success: false });
     });
+});
+
+router.delete("/users/deletedatas/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.json({ msg: "data deleted successfully", success: true, user });
+  } catch (err) {
+    res.status(500).json({ msg: err.message, success: false });
+  }
 });
 
 module.exports = router;
