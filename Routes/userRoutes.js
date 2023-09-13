@@ -50,7 +50,7 @@ router.get("/user/getdata", async (req, res) => {
   }
 });
 
-// api to get user data by id
+// api t Usero get user data by id
 router.get("/users/getdata/:id", (req, res) => {
   User.findById(req.params.id)
 

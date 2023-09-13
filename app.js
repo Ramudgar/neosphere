@@ -9,8 +9,13 @@ const port = 5000;
 app.use(express.json());
 connectDB();
 
+// make public folder static
+app.use("/public", express.static(__dirname + "/public"));
+
 app.use(userRoutes);
 app.use(register_loginRoutes);
+
+
 
 
 app.listen(port, () => {
