@@ -50,7 +50,7 @@ router.put(
     const file = req.file;
     try {
       const image = domain + "public/profileUploads/" + file.filename;
-      const profile = await Profile.findById({ user: req.userData._id });
+      const profile = await Profile.findOne({ user: req.userData._id });
       if (!profile) {
         return res.status(400).send("Profile not found");
       }
@@ -66,5 +66,40 @@ router.put(
     }
   }
 );
+
+// code for get the profile by taking the ref of the user
+// @route GET profile/get
+// @desc Get a profile
+// @access Private
+router.get("/profile/get", auth.verifyUser, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.userData._id });
+    if (!profile) {
+      return res.status(400).send("Profile not found");
+    }
+    res.json({ msg: "profile fetched", success: true, profile });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
+});
+
+// code for delete the profile by taking the ref of the user
+// @route DELETE profile/delete
+// @desc Delete a profile
+// @access Private
+router.delete("/profile/delete", auth.verifyUser, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.userData._id });
+    if (!profile) {
+      return res.status(400).send("Profile not found");
+    }
+    await profile.remove();
+    res.json({ msg: "profile deleted", success: true });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
