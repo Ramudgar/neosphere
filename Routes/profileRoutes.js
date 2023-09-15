@@ -15,12 +15,21 @@ router.post(
   async (req, res) => {
     const data = req.body;
     const file = req.file;
+
     try {
-      if (!file || file.length === 0) {
-        return res.status(400).send("Please upload an image");
+      const existingProfile = await Profile.findOne({ user: req.userData._id });
+
+      if (existingProfile) {
+        return res.status(400).json({ error: "Profile already exists" });
       }
+
+      if (!file) {
+        return res.status(400).json({ error: "Please upload an image" });
+      }
+
       const image = domain + "public/profileUploads/" + file.filename;
-      const profile = new Profile({
+
+      const profiledata = new Profile({
         user: req.userData._id,
         name: data.name,
         contact: data.contact,
@@ -28,11 +37,16 @@ router.post(
         profilepic: image,
         dob: data.dob,
       });
-      await profile.save();
-      res.status(200).json({ msg: "Profile created successfully", profile });
+
+      await profiledata.save();
+
+      return res.status(200).json({
+        msg: "Profile created successfully",
+        profiledata,
+      });
     } catch (err) {
-      console.log(err);
-      res.status(500).send("Server Error");
+      console.error(err);
+      return res.status(500).json({ error: "Server Error" });
     }
   }
 );
@@ -59,21 +73,23 @@ router.put(
         profile.name = data.name ? data.name : profile.name;
         profile.contact = data.contact ? data.contact : profile.contact;
         profile.address = data.address ? data.address : profile.address;
-        profile.profilepic = profile.profilepic;
-        const updatedProfile = await profile.save();
-        res.json({ msg: "profile updated", success: true, updatedProfile });
-      }
-      const image = domain + "public/profileUploads/" + file.filename;
+      } else {
+        const image = domain + "public/profileUploads/" + file.filename;
 
-      profile.name = data.name ? data.name : profile.name;
-      profile.contact = data.contact ? data.contact : profile.contact;
-      profile.address = data.address ? data.address : profile.address;
-      profile.profilepic = image ? image : profile.profilepic;
+        profile.name = data.name ? data.name : profile.name;
+        profile.contact = data.contact ? data.contact : profile.contact;
+        profile.address = data.address ? data.address : profile.address;
+        profile.profilepic = image ? image : profile.profilepic;
+      }
       const updatedProfile = await profile.save();
-      res.json({ msg: "profile updated", success: true, updatedProfile });
+      return res.json({
+        msg: "profile updated",
+        success: true,
+        updatedProfile,
+      });
     } catch (err) {
       console.log(err);
-      res.status(500).send("Server Error");
+      return res.status(500).send("Server Error");
     }
   }
 );
@@ -105,8 +121,8 @@ router.delete("/profile/delete", auth.verifyUser, async (req, res) => {
     if (!profile) {
       return res.status(400).send("Profile not found");
     }
-    await profile.remove();
-    res.json({ msg: "profile deleted", success: true });
+    await profile.deleteOne();
+    res.json({ msg: "profile deleted", success: true, profile });
   } catch (err) {
     console.log(err);
     res.status(500).send("Server Error");
