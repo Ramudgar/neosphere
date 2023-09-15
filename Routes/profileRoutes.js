@@ -48,12 +48,23 @@ router.put(
   async (req, res) => {
     const data = req.body;
     const file = req.file;
+
     try {
-      const image = domain + "public/profileUploads/" + file.filename;
       const profile = await Profile.findOne({ user: req.userData._id });
+
       if (!profile) {
         return res.status(400).send("Profile not found");
       }
+      if (!file || file.length === 0) {
+        profile.name = data.name ? data.name : profile.name;
+        profile.contact = data.contact ? data.contact : profile.contact;
+        profile.address = data.address ? data.address : profile.address;
+        profile.profilepic = profile.profilepic;
+        const updatedProfile = await profile.save();
+        res.json({ msg: "profile updated", success: true, updatedProfile });
+      }
+      const image = domain + "public/profileUploads/" + file.filename;
+
       profile.name = data.name ? data.name : profile.name;
       profile.contact = data.contact ? data.contact : profile.contact;
       profile.address = data.address ? data.address : profile.address;
