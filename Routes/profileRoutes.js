@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const Profile = require("../models/profileModels");
+const Profile = require("../models/profileModel");
 const domain = "http://localhost:5000";
-const auth = require("../auth/auth");
-const uploadsServices = require("../services/uploadsServices");
+const auth = require("../config/auth");
+const uploadsServices = require("../services/uploadServices");
 
-// @route POST api/profile by taking the ref of the user
+// @route POST profile/create by taking the ref of the user
 // @desc Create a profile
 // @access Private
 router.post(
   "/profile/create",
-  uploadsServices.profileImage.single("image"),
+  uploadsServices.profileImage.single("profilepic"),
   auth.verifyUser,
   async (req, res) => {
     const data = req.body;
@@ -23,14 +23,43 @@ router.post(
       const profile = new Profile({
         user: req.userData._id,
         name: data.name,
-        phone: data.phone,
-        age: data.age,
+        contact: data.contact,
         address: data.address,
-        bio: data.bio,
-        image: image,
+        profilepic: image,
+        dob: data.dob,
       });
       await profile.save();
       res.status(200).json({ msg: "Profile created successfully", profile });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// code for update the profile by taking the ref of the user
+// @route PUT profile/update
+// @desc Update a profile
+// @access Private
+router.put(
+  "/profile/update",
+  uploadsServices.profileImage.single("profilepic"),
+  auth.verifyUser,
+  async (req, res) => {
+    const data = req.body;
+    const file = req.file;
+    try {
+      const image = domain + "public/profileUploads/" + file.filename;
+      const profile = await Profile.findById({ user: req.userData._id });
+      if (!profile) {
+        return res.status(400).send("Profile not found");
+      }
+      profile.name = data.name ? data.name : profile.name;
+      profile.contact = data.contact ? data.contact : profile.contact;
+      profile.address = data.address ? data.address : profile.address;
+      profile.profilepic = image ? image : profile.profilepic;
+      const updatedProfile = await profile.save();
+      res.json({ msg: "profile updated", success: true, updatedProfile });
     } catch (err) {
       console.log(err);
       res.status(500).send("Server Error");
