@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../models/categoryModel");
+const User = require("../models/userModel");
 const auth = require("../config/auth");
 
 // @route POST category/create
@@ -11,6 +12,13 @@ router.post("/category/create", auth.verifyUser, async (req, res) => {
   if (!data) {
     return res.status(400).json({ error: "Please enter the category name" });
   }
+  const user = await User.findOne({ _id: req.userData._id });
+  if (user.role !== "admin") {
+    return res
+      .status(400)
+      .json({ error: "You are not authorized to create category" });
+  }
+
   try {
     const existingCategory = await Category.findOne({ name: data.name });
     if (existingCategory) {
