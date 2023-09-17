@@ -99,7 +99,7 @@ router.post("/users/register", (req, res) => {
 //   }
 // });
 
-router.post("/user/login", async (req, res) => {
+router.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
