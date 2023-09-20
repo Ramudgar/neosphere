@@ -1,7 +1,7 @@
 // ParentComponent.js
 
 import React from 'react';
-import ChildComponent from './ChildComponent';
+import ChildComponent from './childComponent'
 
 function ParentComponent() {
   // Define data to be passed to the child component
@@ -14,7 +14,7 @@ function ParentComponent() {
     <div>
       <h1>Parent Component</h1>
       {/* Pass the data to the ChildComponent using props */}
-      <ChildComponent person={data} />
+      <ChildComponent person={data} hello={data} />
     </div>
   );
 }

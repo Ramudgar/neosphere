@@ -1,16 +1,20 @@
 // ChildComponent.js
 
-import React from 'react';
+import React from "react";
 
-function ChildComponent(props) {
+function ChildComponent( {person, hello}) {
   // Access the data passed from the parent via props
-  const { person } = props;
+  console.log(person);
+   
 
   return (
     <div>
       <h2>Child Component</h2>
-      <p>Name: {person.name}</p>
-      <p>Age: {person.age}</p>
+
+      {/* ternary operation for checking if person then show data else not */}
+
+      {person ? (<p>Name: {hello.age}</p>
+      ) : <p>no data</p>}
     </div>
   );
 }

@@ -1,52 +1,20 @@
-// import "./index.css";
+import ParentComponent from "./componentsPractice/parentComponent";
+import "./index.css";
+import { Route, BrowserRouter as Router , Routes } from "react-router-dom";
 
-// function App() {
-//   return (
-//     <>
-//       <div className="App">
-//         <h1>React App</h1>
-//       </div>
-//     </>
-//   );
-// }
+function App() {
+  return (
+    <Router>
+      {/* <NavbarComponent onSearch={handleSearch} /> */}
 
-// export default App;
-import React from "react";
+      <Routes>
+        <Route path="/parent" element={< ParentComponent/>} />
+        
+        </Routes>
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 0,
-    };
-  }
-
-  // code for increment button
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  };
-
-  // code for decrement button
-  decrement = () => {
-    this.setState({
-      count: this.state.count - 1,
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <div className="App">
-          <h1>Counter App</h1>
-          <h2>{this.state.count}</h2>
-          <button onClick={this.increment}>Increment</button>
-          <button onClick={this.decrement}>Decrement</button>
-        </div>
-      </>
-    );
-  }
+      {/* <FooterComponent /> */}
+    </Router>
+  );
 }
 
 export default App;
