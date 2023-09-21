@@ -2,10 +2,9 @@
 
 import React from "react";
 
-function ChildComponent( {person, hello}) {
+function ChildComponent(props) {
   // Access the data passed from the parent via props
-  console.log(person);
-   
+const { person } = props;   
 
   return (
     <div>
@@ -13,7 +12,13 @@ function ChildComponent( {person, hello}) {
 
       {/* ternary operation for checking if person then show data else not */}
 
-      {person ? (<p>Name: {hello.age}</p>
+      {person ? (
+
+        <>
+        
+        <p>Name: {person.name}</p>
+        <p>Age: {person.age}</p>
+        </>
       ) : <p>no data</p>}
     </div>
   );

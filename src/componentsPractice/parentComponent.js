@@ -14,7 +14,7 @@ function ParentComponent() {
     <div>
       <h1>Parent Component</h1>
       {/* Pass the data to the ChildComponent using props */}
-      <ChildComponent person={data} hello={data} />
+      <ChildComponent person={data}   />
     </div>
   );
 }
