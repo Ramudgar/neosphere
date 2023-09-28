@@ -7,8 +7,9 @@ const register_loginRoutes = require("./Routes/register_loginRoutes");
 const profileRoutes = require("./Routes/profileRoutes");
 const categoryRoutes = require("./Routes/categoryRoutes");
 const productRoutes = require("./Routes/productRoutes");
+const cors=require('cors')
 const port = 5000;
-
+app.use(cors())
 app.use(express.json());
 connectDB();
 
