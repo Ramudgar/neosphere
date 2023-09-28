@@ -2,7 +2,7 @@ import React from "react";
 import ChildComponent from "./childComponent";
 
 function AnotherParentComponent(props) {
-  const data = {
+  const datas = {
     name: "Bob",
     age: 40,
   };
@@ -10,7 +10,7 @@ function AnotherParentComponent(props) {
     <>
       <div>
         <h1>Another Parent Component</h1>
-        <ChildComponent person={data} />
+        <ChildComponent person={datas} />
       </div>
     </>
   );
