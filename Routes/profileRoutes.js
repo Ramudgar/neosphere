@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Profile = require("../models/profileModel");
-const domain = "http://localhost:5000";
+const domain = "http://localhost:5000/";
 const auth = require("../config/auth");
 const uploadsServices = require("../services/uploadServices");
 
@@ -35,7 +35,7 @@ router.post(
         contact: data.contact,
         address: data.address,
         profilepic: image,
-        dob: data.dob,
+        dob: data.dob,  
       });
 
       await profiledata.save();
@@ -74,7 +74,7 @@ router.put(
         profile.contact = data.contact ? data.contact : profile.contact;
         profile.address = data.address ? data.address : profile.address;
       } else {
-        const image = domain + "public/profileUploads/" + file.filename;
+        const image = domain + "public/profile/" + file.filename;
 
         profile.name = data.name ? data.name : profile.name;
         profile.contact = data.contact ? data.contact : profile.contact;

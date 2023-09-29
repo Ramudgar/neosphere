@@ -43,7 +43,7 @@ const filter = (req, file, next) => {
 };
 
 const productImageDestination = (req, file, next) => {
-  next(null, `${__dirname}/../public/productUploads`);
+  next(null, `${__dirname}/../public/product`);
 };
 
 const ProfileImageDestination = (req, file, next) => {
