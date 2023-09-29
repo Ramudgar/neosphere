@@ -8,7 +8,7 @@ function NavbarComponent() {
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-          Ecommerce
+            Ecommerce
           </Link>
           <button
             className="navbar-toggler"
@@ -33,20 +33,28 @@ function NavbarComponent() {
                   About Us
                 </Link>
               </li>
-               
+              <li className="nav-item">
+                <Link className="nav-link" to="/addProduct" aria-disabled="true">
+                  Add Products
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link" to="#" aria-disabled="true">
                   View Products
                 </Link>
               </li>
               <li className="nav-item btn btn-primary btn-sm mx-2 ">
-                <Link className="nav-link  " to="/register" aria-disabled="true">
+                <Link
+                  className="nav-link  "
+                  to="/register"
+                  aria-disabled="true"
+                >
                   Register
                 </Link>
               </li>
               <li className="nav-item btn btn-danger  btn-sm mx-2 ">
-                <Link className="nav-link" to="#" aria-disabled="true">
-                 Login
+                <Link className="nav-link" to="/login" aria-disabled="true">
+                  Login
                 </Link>
               </li>
             </ul>

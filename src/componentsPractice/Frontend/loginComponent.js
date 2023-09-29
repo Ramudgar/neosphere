@@ -14,7 +14,7 @@ function LoginComponent() {
       password: password,
     };
     axios
-      .post("http://localhost:5000/user/login", data)
+      .post("http://localhost:5000/users/login", data)
       .then((response) => {
         console.log(response.data);
 
@@ -26,7 +26,8 @@ function LoginComponent() {
 
           // Redirect to login after 1 seconds
           console.log(response.data.token);
-          window.location.href = "/productform";
+        //   window.location.href = "/productform";
+
         }, 1000);
       })
       .catch((err) => {

@@ -13,10 +13,9 @@ function RegisterComponent() {
       // username: username,
       password: password,
     };
-    axios
-      .post("http://localhost:5000/user/register", data)
+    axios.post("http://localhost:5000/users/register", data)
       .then((response) => {
-        console.log(response.data);
+        console.log(response);
         alert(`success: ${response.data.msg}`);
 
         setTimeout(() => {
@@ -36,6 +35,7 @@ function RegisterComponent() {
         <form>
           <div className="form-group">
             <label htmlFor="inputEmail">Email</label>
+          {/* <h1>{email}</h1> */}
             <input
               type="email"
               className="form-control"
@@ -55,6 +55,7 @@ function RegisterComponent() {
             />
           </div> */}
           <div className="form-group">
+            {/* <p>{password}</p> */}
             <label htmlFor="inputPassword">Password</label>
             <input
               type="password"
