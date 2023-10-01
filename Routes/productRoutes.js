@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+const Category = require("../models/categoryModel");
 const Product = require("../models/productModel");
 const auth = require("../config/auth");
 const uploadServices = require("../services/uploadServices");
@@ -15,6 +15,13 @@ router.post(
   uploadServices.productImage.single("image"),
   async (req, res) => {
     const data = req.body;
+    const category= await Category.find({name:data.category})
+    // store category_id to print from category 
+    const category_id=category[0]._id
+    // console.log(category_id);
+
+
+    
     const file = req.file;
     const user = req.userData.role;
     if (user === "admin") {
@@ -30,7 +37,7 @@ router.post(
 
           const product = new Product({
             name: data.name,
-            category: data.category,
+            category: category_id,
             price: data.price,
             quantity: data.quantity,
             description: data.description,
