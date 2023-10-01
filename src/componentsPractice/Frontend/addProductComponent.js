@@ -21,16 +21,17 @@ function AddProductComponent() {
     formData.append("category", category);
     formData.append("image", image);
 
+    console.log(formData);
+
     const config = {
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('token'),
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     };
     console.log(config);
     axios
-      .post("http://localhost:5000/product/add", formData, config)
+      .post("http://localhost:5000/product/create", formData, config)
       .then((response) => {
-        console.log(response);
         alert("Product added successfully");
       })
       .catch((err) => {
@@ -88,7 +89,7 @@ function AddProductComponent() {
               id="categoryDropdown"
               onClick={(e) => setCategory(e.target.value)}
             >
-              <option value="Laptop">Laptop</option>
+              <option value="laptop">Laptop</option>
               <option value="Mobile">Mobile</option>
               <option value="Tablet">Tablet</option>
             </select>

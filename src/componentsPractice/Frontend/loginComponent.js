@@ -16,6 +16,7 @@ function LoginComponent() {
     axios
       .post("http://localhost:5000/users/login", data)
       .then((response) => {
+        console.log(response);
         console.log(response.data);
 
         alert(`success: ${response.data.msg}`);
@@ -25,16 +26,16 @@ function LoginComponent() {
           localStorage.setItem("userData", JSON.stringify(response.data)); // Store the user data localstorage
 
           // Redirect to login after 1 seconds
-          console.log(response.data.token);
-        //   window.location.href = "/productform";
+          // console.log(response.data.token);
+          window.location.href = "/addProduct";
 
         }, 1000);
       })
       .catch((err) => {
         if (err.response) {
-          // The request was made and the server responded with a status code
           // Extract the error message from the response data
-          const errorMessage = err.response.data[0];
+          const errorMessage = err.response.data.msg;
+          console.log(errorMessage);
           alert(`Error: ${errorMessage}`);
         } else {
           // Error occurred before the request was made or no response was received
