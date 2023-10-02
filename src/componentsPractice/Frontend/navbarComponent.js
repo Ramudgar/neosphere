@@ -39,7 +39,7 @@ function NavbarComponent() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#" aria-disabled="true">
+                <Link className="nav-link" to="viewProduct" aria-disabled="true">
                   View Products
                 </Link>
               </li>
