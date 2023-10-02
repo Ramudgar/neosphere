@@ -1,5 +1,6 @@
 import About from "./componentsPractice/Frontend/about";
 import AddProductComponent from "./componentsPractice/Frontend/addProductComponent";
+import EditProductComponent from "./componentsPractice/Frontend/editProductComponent";
 import Home from "./componentsPractice/Frontend/home";
 import LoginComponent from "./componentsPractice/Frontend/loginComponent";
 import NavbarComponent from "./componentsPractice/Frontend/navbarComponent";
@@ -18,9 +19,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterComponent />} />
-        <Route path='/login' element={<LoginComponent />} />
+        <Route path="/login" element={<LoginComponent />} />
         <Route path="/addProduct" element={<AddProductComponent />} />
         <Route path="/viewProduct" element={<ProductView />} />
+        <Route path="/editProduct/:id" element={<EditProductComponent />} />
 
         {/* <Route path="/" element={<ParentComponent />} />
         <Route path="/parent" element={<AnotherParentComponent />} /> */}

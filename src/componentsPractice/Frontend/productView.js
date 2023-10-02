@@ -11,7 +11,7 @@ function ProductView() {
     axios
       .get("http://localhost:5000/products/get")
       .then((response) => {
-        // console.log(response);
+        console.log(response);
         // console.log(response.data);
         setProduct(response.data.products);
       })

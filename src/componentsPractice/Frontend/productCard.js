@@ -15,9 +15,13 @@ function ProductCard({
 
   const userData = localStorage.getItem("userData");
   const userdata = JSON.parse(userData);
+
+//   console.log(userdata);
+
   // const id = data.data._id;
   // const isAdmin = userdata.data.isAdmin;
-  const isAdmin = userdata?.data?.isAdmin || false;
+//   to check whether role==admin or not
+  const isAdmin = userdata?.data?.role === "admin" || false;
 
   // convert _id to string to use it in the url for editProduct
   const _id = id.toString();
