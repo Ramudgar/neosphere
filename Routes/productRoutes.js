@@ -64,12 +64,13 @@ router.post(
 // @route GET products
 // @desc Get all products
 // @access Public
+
 router.get("/products/get", async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate("category"); // Use populate to get category details
     return res
       .status(200)
-      .json({ msg: "products fetched successfully", products });
+      .json({ msg: "Products fetched successfully", products });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Server Error" });
@@ -83,7 +84,7 @@ router.get("/product/get/:id", async (req, res) => {
   const productId = req.params.id;
 
   try {
-    const product = await Product.findById(productId);
+    const product = await Product.findById(productId).populate("category");
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
