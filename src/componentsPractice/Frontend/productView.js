@@ -30,7 +30,7 @@ function ProductView() {
           price={product.price}
           description={product.description}
           quantity={product.quantity}
-          category={product.category}
+          category={product.category ? product.category.name : ''}
           image={product.image}
         />
       ))}
