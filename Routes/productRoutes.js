@@ -154,4 +154,55 @@ router.put(
   }
 );
 
+// delete product by product id
+router.delete("/Product/delete/:id", auth.verifyUser, async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = req.userData.role;
+    if (user !== "admin") {
+      return res
+        .status(401)
+        .json({ error: "You are not authorized to delete a product" });
+    }
+
+    const product = await Product.findByIdAndDelete(id);
+    res
+      .status(200)
+      .json({ msg: "Product deleted successfully", success: true, product });
+  } catch (e) {
+    res.status(500).json({ msg: e, success: false });
+  }
+});
+
+// Define a route for searching products
+// this search work only if the name match exact words
+
+router.get("/product/search", async (req, res) => {
+  try {
+    const { query } = req.query;
+
+    if (!query || query.trim() === "") {
+      return res
+        .status(400)
+        .json({ msg: "Please enter a valid query", success: false });
+    }
+
+    const regex = new RegExp(query, "i");
+    const products = await Product.find({ name: regex });
+
+    if (products.length === 0) {
+      return res.status(400).json({ msg: "No products found", success: false });
+    }
+
+    res.status(200).json({
+      msg: "Products searched successfully",
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.error("API Error:", error);
+    res.status(500).json({ msg: "Internal server error", success: false });
+  }
+});
+
 module.exports = router;
