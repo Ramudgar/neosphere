@@ -14,7 +14,7 @@ const EditProductComponent = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/getProduct/${id}`)
+      .get(`http://localhost:5000/Product/get/${id}`)
       .then((response) => {
         setProductData(response.data.product);
       })
@@ -45,14 +45,14 @@ const EditProductComponent = () => {
 
     try {
       axios
-        .put(`http://localhost:5000/updateProduct/${id}`, formData, config)
+        .put(`http://localhost:5000/product/update/${id}`, formData, config)
         .then((response) => {
           console.log(response.data);
           alert(`Success: ${response.data.msg}`);
 
           setTimeout(() => {
             // Redirect to product view after 1 second
-            window.location.href = "/productview";
+            window.location.href = "/viewProduct";
           }, 1000);
         });
     } catch (err) {
@@ -122,9 +122,9 @@ const EditProductComponent = () => {
           value={productData.category || ""}
           onChange={handleChange}
         >
-          <option value="Laptop">Laptop</option>
-          <option value="Mobile">Mobile</option>
-          <option value="Tablet">Tablet</option>
+          <option value="laptop">Laptop</option>
+          <option value="mobile">Mobile</option>
+          <option value="tablet">Tablet</option>
         </select>
       </div>
       <div>

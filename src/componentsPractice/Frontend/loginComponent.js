@@ -27,7 +27,7 @@ function LoginComponent() {
 
           // Redirect to login after 1 seconds
           // console.log(response.data.token);
-          window.location.href = "/addProduct";
+          window.location.href = "/";
 
         }, 1000);
       })
