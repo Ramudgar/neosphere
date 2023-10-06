@@ -2,12 +2,6 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 const userSchema = new schema(
   {
-    name: {
-      type: String,
-      trim: true,
-      min: 3,
-      max: 20,
-    },
     email: {
       type: String,
       required: true,
@@ -24,13 +18,10 @@ const userSchema = new schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    age: {
-      type: Number,
+    profile: {
+      type: schema.Types.ObjectId,
+      ref: "profile",
     },
-    contactNumber: {
-      type: String,
-    },
-  
   },
   { timestamps: true }
 );

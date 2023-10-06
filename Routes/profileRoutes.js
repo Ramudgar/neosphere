@@ -35,7 +35,8 @@ router.post(
         contact: data.contact,
         address: data.address,
         profilepic: image,
-        dob: data.dob,  
+        dob: data.dob,
+        flag: true,
       });
 
       await profiledata.save();

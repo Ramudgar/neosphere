@@ -116,7 +116,7 @@ router.put(
     }
 
     try {
-      const product = await Product.findById(productId);
+      const product = await Product.find(productId);
 
       if (!product) {
         return res.status(404).json({ error: "Product not found" });
