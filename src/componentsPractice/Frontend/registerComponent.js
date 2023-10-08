@@ -1,32 +1,40 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function RegisterComponent() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const data = {
+        email: email,
+        password: password,
+      };
 
-    const data = {
-      email: email,
-      // username: username,
-      password: password,
-    };
-    axios.post("http://localhost:5000/users/register", data)
-      .then((response) => {
-        console.log(response);
-        alert(`success: ${response.data.msg}`);
+      const response = await axios.post(
+        "http://localhost:5000/user/signup",
+        data
+      );
+      console.log(response);
+      alert(`Success: ${response.data.msg}`);
 
-        setTimeout(() => {
-          // Redirect to login after 1 seconds
-          window.location.href = "/login";
-        }, 1000);
-      })
-      .catch((err) => {
-        alert(`Error: ${err.response.data.msg}`);
-        console.log(err.response.data.msg);
-      });
+      // setTimeout(() => {
+      //   // Redirect to login after 1 second
+      //   window.location.href = "/login";
+      // }, 1000);
+
+      navigate("/login");
+    } catch (error) {
+      console.log(error.response ? error.response.data.msg : "Server error");
+      alert(
+        `Error: ${error.response ? error.response.data.msg : "Server error"}`
+      );
+    }
   };
 
   return (
@@ -35,7 +43,7 @@ function RegisterComponent() {
         <form>
           <div className="form-group">
             <label htmlFor="inputEmail">Email</label>
-          {/* <h1>{email}</h1> */}
+            {/* <h1>{email}</h1> */}
             <input
               type="email"
               className="form-control"

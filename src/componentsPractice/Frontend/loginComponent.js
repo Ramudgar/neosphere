@@ -16,7 +16,7 @@ function LoginComponent() {
       password: password,
     };
     axios
-      .post("http://localhost:5000/users/login", data)
+      .post("http://localhost:5000/user/signup", data)
       .then((response) => {
         // console.log(response);
         // console.log(response.data);
