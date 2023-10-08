@@ -5,9 +5,8 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Profile = require("../models/profileModel");
 // @route POST users/register with profile creation
-// @desc Register a user
+// @desc Register a user with profile creation
 // @access Public
-
 router.post("/user/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -16,18 +15,20 @@ router.post("/user/signup", async (req, res) => {
         .status(400)
         .json({ msg: "email or password is required", success: false });
     }
-    
-    // Create a new profiledata instance
+
+    // Create a new profiledata instance and save it
     const profiledata = new Profile({});
     await profiledata.save();
 
-    // Create a new user and set the profile field with the profiledata _id
+    // Create a new user with the profile field set to profiledata._id
     const hashed_pw = await bcryptjs.hash(password, 10);
     const user = new User({
       email: email,
       password: hashed_pw,
       profile: profiledata._id, // Set the profile field with the profiledata _id
     });
+
+    // Save the user
     await user.save();
 
     res.status(201).json({
@@ -42,7 +43,7 @@ router.post("/user/signup", async (req, res) => {
   }
 });
 
-// router for register
+// router for register user without profile creation
 router.post("/users/register", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
