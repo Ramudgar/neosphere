@@ -5,6 +5,8 @@ function LoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // const to set flag from response.data.prfile
+
   const handleSubmit = (e) => {
     // Prevent the default behaviour of form submit
     e.preventDefault();
@@ -16,8 +18,9 @@ function LoginComponent() {
     axios
       .post("http://localhost:5000/users/login", data)
       .then((response) => {
-        console.log(response);
-        console.log(response.data);
+        // console.log(response);
+        // console.log(response.data);
+        const profiledata = response.data.data.profile.flag;
 
         alert(`success: ${response.data.msg}`);
         setTimeout(() => {
@@ -25,10 +28,8 @@ function LoginComponent() {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userData", JSON.stringify(response.data)); // Store the user data localstorage
 
-          // Redirect to login after 1 seconds
-          // console.log(response.data.token);
-          window.location.href = "/";
-
+          // Redirect based on the profiledata flag
+          window.location.href = profiledata === false ? "/profile" : "/";
         }, 1000);
       })
       .catch((err) => {

@@ -5,6 +5,7 @@ import Home from "./componentsPractice/Frontend/home";
 import LoginComponent from "./componentsPractice/Frontend/loginComponent";
 import NavbarComponent from "./componentsPractice/Frontend/navbarComponent";
 import ProductView from "./componentsPractice/Frontend/productView";
+import ProfileComponent from "./componentsPractice/Frontend/profileComponent";
 import RegisterComponent from "./componentsPractice/Frontend/registerComponent";
 import SearchResultsPage from "./componentsPractice/Frontend/searchResultComponent";
 import AnotherParentComponent from "./componentsPractice/anotherParentComponent";
@@ -22,15 +23,18 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<RegisterComponent />} />
         <Route path="/login" element={<LoginComponent />} />
-        <Route path="/addProduct" element={
-          <AdminRoute>
-        <AddProductComponent />
-        </AdminRoute>
-        
-        } />
+        <Route
+          path="/addProduct"
+          element={
+            <AdminRoute>
+              <AddProductComponent />
+            </AdminRoute>
+          }
+        />
         <Route path="/viewProduct" element={<ProductView />} />
         <Route path="/editProduct/:id" element={<EditProductComponent />} />
         <Route path="/search-product/:search" element={<SearchResultsPage />} />
+        <Route path="/profile" element={<ProfileComponent />} />
 
         {/* <Route path="/" element={<ParentComponent />} />
         <Route path="/parent" element={<AnotherParentComponent />} /> */}
