@@ -65,7 +65,7 @@ router.post(
 // @desc Get all products
 // @access Public
 
-router.get("/products/get", async (req, res) => {
+router.get("/products/get",auth.verifyUser, async (req, res) => {
   try {
     const products = await Product.find().populate("category"); // Use populate to get category details
     return res

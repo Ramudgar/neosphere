@@ -13,14 +13,19 @@ const verifyUser = function (req, res, next) {
     // console.log(data._id);
 
     User.findOne({ _id: data._id })
+      .populate("profile")
       .then(function (user) {
-        //all the data of the logged in user is stored in user
-        // console.log(user);
+        if (!user) {
+          return res.status(404).json({ msg: "User not found" });
+        }
+
+        console.log(user); // Check the user object here
         req.userData = user;
         next();
       })
       .catch(function (e) {
-        res.status(401).json({ msg: "You are authorised " });
+        console.error("Error populating profile:", e); // Log any errors here
+        res.status(401).json({ msg: "You are not authorized" });
       });
   } catch (e) {
     res.status(401).json({ msg: "You are not authorised" });

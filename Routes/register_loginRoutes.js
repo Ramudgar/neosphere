@@ -4,7 +4,6 @@ const User = require("../models/userModel");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Profile = require("../models/profileModel");
-
 // @route POST users/register with profile creation
 // @desc Register a user
 // @access Public
@@ -13,34 +12,33 @@ router.post("/user/signup", async (req, res) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
-      res
+      return res
         .status(400)
         .json({ msg: "email or password is required", success: false });
-      return;
     }
-    const user = await User.findOne({ email: email });
-    if (user) {
-      res.status(400).json({ msg: "email already exists", success: false });
-      return;
-    }
+    
+    // Create a new profiledata instance
+    const profiledata = new Profile({});
+    await profiledata.save();
+
+    // Create a new user and set the profile field with the profiledata _id
     const hashed_pw = await bcryptjs.hash(password, 10);
-    const data = new User({
+    const user = new User({
       email: email,
       password: hashed_pw,
+      profile: profiledata._id, // Set the profile field with the profiledata _id
     });
-    await data.save();
-    const profiledata = new Profile({
-    });
-    await profiledata.save();
+    await user.save();
 
     res.status(201).json({
       msg: "user registered successfully",
       success: true,
-      data,
+      data: user,
       profile: profiledata,
     });
   } catch (e) {
-    res.status(500).json({ msg: e, success: false });
+    console.error(e);
+    res.status(500).json({ msg: "Internal server error", success: false });
   }
 });
 
