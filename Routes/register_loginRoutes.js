@@ -87,7 +87,7 @@ router.post("/users/register", (req, res) => {
 router.post("/users/login", async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate("profile");
     if (!user) {
       res
         .status(400)

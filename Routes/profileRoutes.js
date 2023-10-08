@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Profile = require("../models/profileModel");
+const User = require("../models/userModel");
 const domain = "http://localhost:5000/";
 const auth = require("../config/auth");
 const uploadsServices = require("../services/uploadServices");
@@ -8,49 +9,49 @@ const uploadsServices = require("../services/uploadServices");
 // @route POST profile/create by taking the ref of the user
 // @desc Create a profile
 // @access Private
-router.post(
-  "/profile/create",
-  uploadsServices.profileImage.single("profilepic"),
-  auth.verifyUser,
-  async (req, res) => {
-    const data = req.body;
-    const file = req.file;
+// router.post(
+//   "/profile/create",
+//   uploadsServices.profileImage.single("profilepic"),
+//   auth.verifyUser,
+//   async (req, res) => {
+//     const data = req.body;
+//     const file = req.file;
 
-    try {
-      const existingProfile = await Profile.findOne({ user: req.userData._id });
+//     try {
+//       const existingProfile = await Profile.findOne({ user: req.userData._id });
 
-      if (existingProfile) {
-        return res.status(400).json({ error: "Profile already exists" });
-      }
+//       if (existingProfile) {
+//         return res.status(400).json({ error: "Profile already exists" });
+//       }
 
-      if (!file) {
-        return res.status(400).json({ error: "Please upload an image" });
-      }
+//       if (!file) {
+//         return res.status(400).json({ error: "Please upload an image" });
+//       }
 
-      const image = domain + "public/profileUploads/" + file.filename;
+//       const image = domain + "public/profileUploads/" + file.filename;
 
-      const profiledata = new Profile({
-        user: req.userData._id,
-        name: data.name,
-        contact: data.contact,
-        address: data.address,
-        profilepic: image,
-        dob: data.dob,
-        flag: true,
-      });
+//       const profiledata = new Profile({
+//         user: req.userData._id,
+//         name: data.name,
+//         contact: data.contact,
+//         address: data.address,
+//         profilepic: image,
+//         dob: data.dob,
+//         flag: true,
+//       });
 
-      await profiledata.save();
+//       await profiledata.save();
 
-      return res.status(200).json({
-        msg: "Profile created successfully",
-        profiledata,
-      });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: "Server Error" });
-    }
-  }
-);
+//       return res.status(200).json({
+//         msg: "Profile created successfully",
+//         profiledata,
+//       });
+//     } catch (err) {
+//       console.error(err);
+//       return res.status(500).json({ error: "Server Error" });
+//     }
+//   }
+// );
 
 // code for update the profile by taking the ref of the user
 // @route PUT profile/update
@@ -65,7 +66,12 @@ router.put(
     const file = req.file;
 
     try {
-      const profile = await Profile.findOne({ user: req.userData._id });
+      // const profile = await Profile.findOne({ user: req.userData._id });
+      const user = await User.findOne({ _id: req.userData._id }).populate(
+        "profile"
+      );
+      const profile_id = user.profile._id;
+      const profile = await Profile.findOne({ _id: profile_id });
 
       if (!profile) {
         return res.status(400).send("Profile not found");
@@ -74,6 +80,7 @@ router.put(
         profile.name = data.name ? data.name : profile.name;
         profile.contact = data.contact ? data.contact : profile.contact;
         profile.address = data.address ? data.address : profile.address;
+        profile.flag = true;
       } else {
         const image = domain + "public/profile/" + file.filename;
 
@@ -81,6 +88,7 @@ router.put(
         profile.contact = data.contact ? data.contact : profile.contact;
         profile.address = data.address ? data.address : profile.address;
         profile.profilepic = image ? image : profile.profilepic;
+        profile.flag = true;
       }
       const updatedProfile = await profile.save();
       return res.json({
@@ -101,7 +109,11 @@ router.put(
 // @access Private
 router.get("/profile/get", auth.verifyUser, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.userData._id });
+    const user = await User.findOne({ _id: req.userData._id }).populate(
+      "profile"
+    );
+    const profile_id = user.profile._id;
+    const profile = await Profile.findOne({ _id: profile_id });
     if (!profile) {
       return res.status(400).send("Profile not found");
     }
@@ -118,7 +130,11 @@ router.get("/profile/get", auth.verifyUser, async (req, res) => {
 // @access Private
 router.delete("/profile/delete", auth.verifyUser, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.userData._id });
+    const user = await User.findOne({ _id: req.userData._id }).populate(
+      "profile"
+    );
+    const profile_id = user.profile._id;
+    const profile = await Profile.findOne({ _id: profile_id });
     if (!profile) {
       return res.status(400).send("Profile not found");
     }

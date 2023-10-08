@@ -19,7 +19,7 @@ const verifyUser = function (req, res, next) {
           return res.status(404).json({ msg: "User not found" });
         }
 
-        console.log(user); // Check the user object here
+        // console.log(user); // Check the user object here
         req.userData = user;
         next();
       })
