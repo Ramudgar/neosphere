@@ -38,4 +38,25 @@ router.post("/category/create", auth.verifyUser, async (req, res) => {
   }
 });
 
+// @route GET category/all
+// @desc Get all categories
+// @access Public
+
+router.get("/category/get", async (req, res) => {
+  try {
+    const categories = await Category.find();
+    if (!categories) {
+      return res.status(400).json({ error: "No categories found" });
+    }
+    return res.status(200).json({
+      msg: "Categories fetched successfully",
+      categories,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Server Error" });
+  }
+}
+);
+
 module.exports = router;
