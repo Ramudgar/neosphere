@@ -16,10 +16,10 @@ router.post(
   uploadServices.productImage.single("image"),
   async (req, res) => {
     const data = req.body;
-    const category = await Category.find({ name: data.category });
+    // const category = await Category.find({ name: data.category });
     // store category_id to print from category
     // console.log(category)
-    const category_id = category[0]._id;
+    // const category_id = category[0]._id;
     // console.log(category_id);
 
     const file = req.file;
@@ -37,7 +37,7 @@ router.post(
 
           const product = new Product({
             name: data.name,
-            category: category_id,
+            category: data.category,
             price: data.price,
             quantity: data.quantity,
             description: data.description,
