@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import '../../assets/css/productview.css'
 
 function AddProductComponent() {
@@ -36,8 +36,24 @@ function AddProductComponent() {
       })
       .catch((err) => {
         console.log(err);
+        alert("Error: " + err);
       });
   };
+
+  // to get the category from the database
+
+  const [categories, setCategories] = useState([]); // to store the categories
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/category/get")
+      .then((response) => {
+        // console.log(response);
+        setCategories(response.data.categories);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>
@@ -89,9 +105,9 @@ function AddProductComponent() {
               id="categoryDropdown"
               onClick={(e) => setCategory(e.target.value)}
             >
-              <option value="laptop">Laptop</option>
-              <option value="Mobile">Mobile</option>
-              <option value="Tablet">Tablet</option>
+              {categories.map((category) => {
+                return <option key={category._id} value={category._id}>{category.name}</option>;
+              })}
             </select>
           </div>
           <br /> <br />
